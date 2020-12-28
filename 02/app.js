@@ -67,17 +67,17 @@ app.get('/people', async (req, res) => {
   }
 });
 
-console.log(process.env.PORT)
-app.listen(process.env.PORT);
+// console.log(process.env.PORT)
+// app.listen(process.env.PORT);
 
-// mongoose.connect(
-//   `${process.env.MONGODB_HOST_URL}/swfavorites`,
-//   { useNewUrlParser: true },
-//   (err) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       app.listen(process.env.PORT);
-//     }
-//   }
-// );
+mongoose.connect(
+  `${process.env.MONGODB_HOST_URL}/swfavorites`,
+  { useNewUrlParser: true },
+  (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      app.listen(process.env.PORT);
+    }
+  }
+);
