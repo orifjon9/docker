@@ -1,5 +1,8 @@
 # Deployment
 
+## RUN this command to use code in the 01 folder
+cd 01
+
 ## Build an image
 docker build -t feedback:1 .
 
