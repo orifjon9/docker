@@ -8,4 +8,8 @@ RUN npm install
 
 COPY . .
 
+ENV PORT=80
+
+EXPOSE $PORT
+
 CMD ["node", "app.js"]
