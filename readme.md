@@ -24,3 +24,6 @@ docker run -d -p 3000:8000 --name feedback2-app --env PORT 8000 --env FILE feedb
 ### Set environment file
 docker run -d -p 3000:8000 --name feedback2-app --env-file ./.env --name feedback:2
 
+## ARGument variables
+### it applies only on build images time and you can't change when you run
+docker build -t feedback:dev --build-arg DEFAULT_PORT 8000 .

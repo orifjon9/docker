@@ -1,5 +1,7 @@
 FROM node:14
 
+ARG DEFAULT_PORT=80
+
 WORKDIR /app
 
 COPY package.json .
@@ -8,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-ENV POST 80
+ENV POST $DEFAULT_PORT
 
 EXPOSE $POST
 
