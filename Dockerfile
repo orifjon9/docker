@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+ENV POST 80
+
+EXPOSE $POST
 
 CMD [ "npm", "start" ]

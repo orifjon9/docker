@@ -15,3 +15,12 @@ docker run -d -p 3000:80 --name feedback-app -v feedback:/app/feedback feedback:
 
 #### Bind Mount if you want to sync files between a docker and pc and see changes live mode
 docker run -d -p 3000:80 --name feedback-app -v "{FOLDER_PATH_PC}":/app feedback:1 
+
+
+## ENVironment varibales
+### Set environment variables through cli commad
+docker run -d -p 3000:8000 --name feedback2-app --env PORT 8000 --env FILE feedback:2
+
+### Set environment file
+docker run -d -p 3000:8000 --name feedback2-app --env-file ./.env --name feedback:2
+
