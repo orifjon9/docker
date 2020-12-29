@@ -17,3 +17,17 @@ Just needs to get a right IP address. And how docker knows about Host IP. There 
 
 ### then run it. 
 `docker run -d -p 3000:3000 --env-file ./.env --rm --name favorites-app favorites:2`
+
+## Container to Container Communication (Base a solution):
+Now, you can call GET and POST /favorites endpoints to save favorite movies in mongodb and get
+
+### We need to run mongodb server on another container
+`docker run -d --name mongodb mongo`
+### Needs to get IP address in docker. There is a IPAddress field under NetworkSettings. Then put that IPAddress in config there MongoDB connection host
+`docker container inspect mongodb`
+
+### Build an image
+`docker build -t favorites:3 .`
+
+### then run it. 
+`docker run -d -p 3000:3000 --env-file ./.env --rm --name favorites-app favorites:3`
