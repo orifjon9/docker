@@ -1,12 +1,13 @@
 # Kubernetes
 
-## Kubernetes in Action - Diving into the Core Concepts(Imperative approach)
-
 ### Install 
 The best resources are in https://kubernetes.io
 
 1. Install tools and setup kubectr https://kubernetes.io/docs/tasks/tools/install-kubectl/
 2. Install and start minikube https://minikube.sigs.k8s.io/docs/start/
+
+
+## Kubernetes in Action - Diving into the Core Concepts(Imperative approach)
 
 ### Deployment
 
@@ -39,3 +40,12 @@ If you want to rollback deployment to previous deployment
 
 To see history of deployment
 10. kubectl rollout history deployment/simple-web-app
+
+
+## Kubernetes in Action - Creating a Deployment Configuration File (Declarative Approach)
+
+To run a container(pods) and a service
+`kubectl apply -f=deployment.yaml -f=service.yaml`
+
+Or make a onle file and run
+`kubectl apply -f=master-deployment.yaml`

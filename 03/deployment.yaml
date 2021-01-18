@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-web-app2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-app
+      tier: backend
+    # matchExpressions: 
+    #   - {key: app, operator: NotIn, values: [web-app, first-app]}
+  template:
+    metadata:
+      labels:
+      app: web-app
+      tier: backend
+    spec:
+      containers:
+        - name: simple-web-node-app
+          image: orifjon9/ec2-docker-simple-web-app:2
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            initialDelaySeconds: 5
+        # - name: ..
+        #   image: ...
