@@ -6,25 +6,30 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: web-app
-      tier: backend
+      app: web-app2
     # matchExpressions: 
     #   - {key: app, operator: NotIn, values: [web-app, first-app]}
   template:
     metadata:
       labels:
-      app: web-app
-      tier: backend
+        app: web-app2
     spec:
       containers:
         - name: simple-web-node-app
           image: orifjon9/ec2-docker-simple-web-app:2
+          volumeMounts:
+            - mountPath: /app/story
+              name: story-volume
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
               path: /
-              port: 8080
+              port: 80
             periodSeconds: 10
             initialDelaySeconds: 5
         # - name: ..
         #   image: ...
+      volumes:
+        - name: story-volume
+          persistentVolumeClaim: 
+            claimName: host-pvc

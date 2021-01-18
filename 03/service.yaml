@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: simple-web-app-backend
 spec:
   selector:
-    app: web-app
+    app: web-app2
   ports: 
-    - protocol: 'TCP'
+    - protocol: "TCP"
       port: 80
-      targetPort: 8080
+      targetPort: 80 ## make sure app running port is correct
     # - protocol: 'TCP'
     #   port: 443
     #   targetPort: 433

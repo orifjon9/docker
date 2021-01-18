@@ -10,6 +10,12 @@ The best resources are in https://kubernetes.io
 ## Kubernetes in Action - Diving into the Core Concepts(Imperative approach)
 
 ### Deployment
+NOTE: Mke sure minikube started
+If not then run this commends
+`
+minikube start
+minikube dashboard
+`
 
 Take any image builds to exprore how kubertines works. In my case, I build simple web app and that contains a single page. So, I use orifjon9/ec2-docker-simple-web-app this
 
@@ -41,6 +47,9 @@ If you want to rollback deployment to previous deployment
 To see history of deployment
 10. kubectl rollout history deployment/simple-web-app
 
+To delete created deployment
+11. kubectl delete deployment/simple-web-app
+12. kubectl delete service/simple-web-app
 
 ## Kubernetes in Action - Creating a Deployment Configuration File (Declarative Approach)
 
@@ -49,3 +58,16 @@ To run a container(pods) and a service
 
 Or make a onle file and run
 `kubectl apply -f=master-deployment.yaml`
+
+### Persistent Volume
+To create a persistent valume needs to run this command.
+`kubectl apply -f=host-pv.yaml`
+
+To create a persistent volume claim
+`kubectl apply -f=host-pvc.yaml`
+
+Connect the created persistent volume claim with container:
+Apply configuration changes in deployment.yaml and run it
+`kubectl apply -f=deployment.yaml`
+
+And check, the app should running
