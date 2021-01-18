@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: web-app2
     # matchExpressions: 
-    #   - {key: app, operator: NotIn, values: [web-app, first-app]}
+    #   - {key: app, operator: NotIn, values: [web-app2, first-app]}
   template:
     metadata:
       labels:
@@ -17,6 +17,19 @@ spec:
       containers:
         - name: simple-web-node-app
           image: orifjon9/ec2-docker-simple-web-app:2
+          env:
+            - name: PORT
+              # value: 80
+              valueFrom:
+                configMapKeyRef:
+                  name: simple-web-app-env
+                  key: port
+            - name: STORAGE
+              # value: 'story'
+              valueFrom:
+                configMapKeyRef:
+                  name: simple-web-app-env
+                  key: folder
           volumeMounts:
             - mountPath: /app/story
               name: story-volume

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-web-app-env
+data:
+  port: '80'
+  folder: 'story'

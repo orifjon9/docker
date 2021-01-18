@@ -1,37 +1,51 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: simple-web-app-backend
 spec:
-  selector: 
-    app: second-app
-  ports:
-    - protocol: 'TCP'
+  selector:
+    app: web-app2
+  ports: 
+    - protocol: "TCP"
       port: 80
-      targetPort: 8080
+      targetPort: 80 ## make sure app running port is correct
     # - protocol: 'TCP'
     #   port: 443
-    #   targetPort: 443
+    #   targetPort: 433
   type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: second-app-deployment
+  name: simple-web-app2
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: second-app
-      tier: backend
+      app: web-app2
+    # matchExpressions: 
+    #   - {key: app, operator: NotIn, values: [web-app2, first-app]}
   template:
-    metadata: 
+    metadata:
       labels:
-        app: second-app
-        tier: backend
-    spec: 
+        app: web-app2
+    spec:
       containers:
-        - name: second-node
-          image: academind/kub-first-app:2
-        # - name: ...
+        - name: simple-web-node-app
+          image: orifjon9/ec2-docker-simple-web-app:2
+          volumeMounts:
+            - mountPath: /app/story
+              name: story-volume
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            initialDelaySeconds: 5
+        # - name: ..
         #   image: ...
+      volumes:
+        - name: story-volume
+          persistentVolumeClaim: 
+            claimName: host-pvc

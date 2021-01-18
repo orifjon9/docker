@@ -71,3 +71,12 @@ Apply configuration changes in deployment.yaml and run it
 `kubectl apply -f=deployment.yaml`
 
 And check, the app should running
+
+### Environment variables & ConfigMaps
+To store environment variables in ConfigMap
+`kubectl apply -f=environment.yaml`
+
+To see all configmaps
+`kubectl get configmap`
+
+Then bring variables from ConfigMap(in the devloyment.yaml) then apply latest deployment.yaml 
